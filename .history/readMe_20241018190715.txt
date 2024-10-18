@@ -1,0 +1,5 @@
+Sitio web dinámico:
+Usuario: webAdmin
+Contraseña: Admin1229 (Google no nos autorizaba poner admin por seguridad)
+Nombre de la base de datos: compras.
+Integrantes del grupo: Luicina Di nucci, Maria Emilia Tunesi. 
