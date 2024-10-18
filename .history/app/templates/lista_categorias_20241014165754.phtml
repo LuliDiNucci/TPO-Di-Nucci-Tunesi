@@ -1,0 +1,15 @@
+<?php require '../tpe/app/templates/Layout/header.phtml'; ?>
+<ul class="listas">
+    <?php
+    if (!empty($clientes) && (is_array($clientes) || is_object($clientes))):
+        foreach ($clientes as $cliente): ?>
+            <li>
+                <a href="./categoria/<?= $cliente->id_categoria ?>"><?= $cliente->nombre ?></a>
+                    <div class="actions">
+                        <a href="eliminarCategoria/<?= $cliente->id_categoria ?>" type="button" class='button'>Borrar</a>
+                        <a href="actualizarCategoria/<?= $cliente->id_categoria ?>" type="button" class='button'>Editar</a>
+                    </div>
+             </li>
+        <?php endforeach ?>
+     <?php endif; ?>
+</ul>

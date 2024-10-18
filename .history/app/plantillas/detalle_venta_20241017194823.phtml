@@ -1,0 +1,20 @@
+<?php require '../tpe/app/plantillas/disenio/encabezado.phtml'; ?>
+
+<div>
+    <?php if ($venta): ?>
+        <ul>
+            <li>Fecha de compra: <?php echo htmlspecialchars($venta->fecha_compra); ?></li>
+            <?php $id_cliente = $venta->clave_foranea; ?>
+            <li>Cliente: <?php echo htmlspecialchars($clientes[$id_cliente]->nombre); ?></li>
+            <li>Monto: <?php echo htmlspecialchars($venta->monto); ?></li>
+            <li>Producto: <?php echo htmlspecialchars($venta->producto); ?></li>
+            <li>
+            <?php if (isset($venta->importado)): ?>
+                <p>Es importado</p>
+                <?php else: ?>
+                    <p>No es importado</p>
+                <?php endif; ?>
+            </li>
+        </ul>
+    <?php endif; ?>
+</div>

@@ -1,0 +1,111 @@
+<?php
+require_once '../tpe/app/libs/response.php';
+require_once '../tpe/app/middlewares/sesion.auth.middleware.php';
+require_once '../tpe/app/controllers/auth.controller.php';
+require_once '../tpe/app/controllers/ventas.controller.php';
+require_once '../tpe/app/controllers/categorias.controller.php';
+require_once '../tpe/app/controllers/funcionalidades.controller.php';
+require_once '../tpe/config.php';
+define('BASE_URL', '');
+define('CATEGORIAS_URL', 'categorias');
+define('VENTAS_URL', 'ventas');
+
+$res = new Response();
+
+$action = 'home';
+if (!empty($_GET['action'])) {
+    $action = $_GET['action'];
+}
+
+$params = explode('/', $action);
+
+switch ($params[0]) {
+    case 'home':
+        sesionAuthMiddleware($res);
+        $controller = new FuncionalidadesController($res);
+        $controller->showHome();
+        break;
+    case 'ventas':
+        sesionAuthMiddleware($res);
+        $controller = new VentasController($res);
+        $controller->showVentas();
+        break;
+    case 'eliminarVenta':
+        sesionAuthMiddleware($res);
+        verifyAuthMiddleware($res);
+        $controller = new VentasController($res);
+        $controller->eraseVenta($params[1]);
+        $controller->showVentas();
+        break;
+    case 'agregarVenta':
+        sesionAuthMiddleware($res);
+        verifyAuthMiddleware($res);
+        $controller = new VentasController($res);
+        $controller->addVenta();
+        $controller->showVentas();
+        break;
+
+    case 'actualizarVenta':
+        sesionAuthMiddleware($res);
+        verifyAuthMiddleware($res);
+        $controller = new VentasController($res);
+        $controller->updateVenta($params[1]);
+        break;
+
+    case 'venta':
+        sesionAuthMiddleware($res);
+        if (!empty($params[1])) {
+            $controller = new VentasController($res);
+            $controller->showVenta($params[1]);
+        }
+        break;
+    case 'categorias':
+        sesionAuthMiddleware($res);
+        $controller = new CategoriasController($res);
+        $controller->showCategorias();
+        break;
+    case 'agregarCategoria':
+        sesionAuthMiddleware($res);
+        verifyAuthMiddleware($res);
+        $controller = new CategoriasController($res);
+        $controller->addCategoria();
+        $controller->showCategorias();
+        break;
+    case 'eliminarCategoria':
+        sesionAuthMiddleware($res);
+        verifyAuthMiddleware($res);
+        $controller = new CategoriasController($res);
+        $controller->eraseCategoria($params[1]);
+        $controller->showCategorias();
+        break;
+    case 'actualizarCategoria':
+        sesionAuthMiddleware($res);
+        verifyAuthMiddleware($res);
+        $controller = new CategoriasController($res);
+        $controller->updateCategoria($params[1]);
+        break;
+    case 'categoria':
+        if (!empty($params[1])) {
+            $controller = new CategoriasController($res);
+            $controller->showCategoria($params[1]);
+        }
+        break;
+    case 'showIniciarSesion':
+        $controller = new AuthController($res);
+        $controller->showInicioSesion();
+        break;
+    case 'inicioSesion':
+        $controller = new AuthController($res);
+        $controller->iniciarSesion();
+        break;
+    case 'cerrarSesion':
+        sesionAuthMiddleware($res);
+        verifyAuthMiddleware($res);
+        $controller = new AuthController($res);
+        $controller->cerrarSesion();
+        break;
+    default:
+        $controller = new FuncionalidadesController($res);
+        $controller->showDefault("Page not found error 404");
+        break;
+}

@@ -1,0 +1,35 @@
+<?php
+
+require_once 'model.php';
+require_once 'config.php';
+
+class UsuarioModel extends model{
+    $query= $this->db->query('SHOW TABLES LIKE\'usuario'\'');
+    $tables=$query->fetchAll();
+
+    if(count($tables)==0){
+        $usuarios = [
+            ['usuario' => 'webadmin', 'password' => 'Admin1229']
+        ];
+        $sql = <<<SQL
+         CREATE TABLE `usuario` (
+                    `id_usuario` int(11) NOT NULL AUTO_INCREMENT,
+                    `nombre` varchar(50) NOT NULL,
+                    `contrasena` varchar(500) NOT NULL,
+                    PRIMARY KEY (`id_usuario`)
+                ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+        SQL-,
+        
+    }
+    public function getUsuarioByNombre($nombre){
+        $query = $this->db->prepare("SELECT * FROM usuario WHERE nombre = ?");
+        $query->execute(params: [$nombre]);
+    
+        $usuario = $query->fetch(PDO::FETCH_OBJ);
+    
+        return $usuario;
+
+    }
+
+
+}

@@ -1,0 +1,37 @@
+<?php session_start(); ?>
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+</head>
+
+<header>
+    <p> PERFUMERIAS TANDIL</p>
+
+    <?php if (!isset($_SESSION['nombre'])): ?>
+        <a href="inicioSesion">Iniciar Sesion</a>
+    <?php else: ?>
+        <p>Bienvenido, <?= $_SESSION['nombre']; ?></p>
+        <a href="cerrarSesion.php">Cerrar Sesion</a>
+    <?php endif; ?>
+</header>
+
+<body>
+    <?php if (!isset($_SESSION['nombre'])): ?>
+        <!-- Si no está logueado, redirige a iniciar sesión -->
+        <a href="showIniciarSesion">Ventas</a>
+        <a href="showIniciarSesion">Categorias</a>
+    <?php else: ?>
+        <!-- Si está logueado, permite el acceso a las ventas y categorías -->
+        <a href="ventas">Ventas</a>
+        <a href="categorias">Categorias</a>
+    <?php endif; ?>
+</body>
+
+</html>
+
+<?php require '../tpe/app/templates/Layout/footer.phtml'; ?>

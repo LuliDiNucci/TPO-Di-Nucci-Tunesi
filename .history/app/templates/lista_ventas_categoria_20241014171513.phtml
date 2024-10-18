@@ -1,0 +1,17 @@
+<?php require '../tpe/app/templates/Layout/header.phtml'; ?>
+<ul class="listas">
+    <?php
+    if (!empty($ventas) && (is_array($ventas) || is_object($ventas))):
+        foreach ($ventas as $venta): ?>
+            <li>
+                <a href="venta/<?= $venta->id_venta ?>"><?= $venta->producto ?></a>
+                <div class="actions">
+                    <a href="eliminarVenta/<?= $venta->id_venta ?>" type="button" class='button'>Borrar</a>
+                    <?php var_dump($venta->id_venta) ?>
+                    <a href="actualizarVenta/<?= $venta->id_venta ?>" type="button" class='button'>Editar</a>
+                </div>
+            </li>
+        <?php endforeach ?>
+    <?php endif; ?>
+</ul>
+<?php require '../tpe/app/templates/Layout/footer.phtml'; ?>

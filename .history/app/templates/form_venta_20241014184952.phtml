@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nueva venta</title>
+</head>
+
+<body>
+    <?php if ($venta): ?>
+        <h1>Ingrese una nueva venta:</h1>
+        <form action="agregarVenta" method="POST">
+            <label for="clave_foranea">Selecciona el cliente:</label>
+            <select name="clave_foranea" id="clave_foranea" required>
+                <?php foreach ($clientes as $cliente): ?>
+                    <option value="<?= $cliente->id_categoria ?>"> <?php echo $cliente->nombre ?> </option>
+                <?php endforeach; ?>
+            </select>
+            <label for="monto">Monto:</label>
+            <input type="number" name="monto" id="monto" <?= $venta->monto ?>required>
+
+            <label for="producto">Nombre del producto:</label>
+            <input type="text" name="producto" id="producto" <?= $venta->producto ?> required>
+
+            <label for="importado">Importado:</label>
+            <select name="importado" id="importado" required>
+                <option value="1">Sí</option>
+                <option value="0">No</option>
+            </select>
+            <label for="fecha_compra">Fecha de compra:</label>
+            <input type="text" name="fecha_compra" id="fecha_compra" <?= $venta->producto ?> required>
+
+
+            <input type="submit" value="agregar">
+        </form>
+    <?php else: ?>
+        <h1>Edite la venta:</h1>
+        <form action="editarVenta" method="POST">
+            <label for="clave_foranea">Selecciona el cliente:</label>
+            <select name="clave_foranea" id="clave_foranea" required>
+                <?php foreach ($clientes as $cliente): ?>
+                    <option value="<?= $cliente->id_cliente ?>" <?= ($cliente->id_cliente == $venta->id_cliente) ? 'selected' : '' ?>>
+                        <?= $cliente->id_cliente ?>
+                    </option>
+                <?php endforeach; ?>
+            </select>
+
+            <label for="monto">Monto:</label>
+            <input type="number" name="monto" id="monto" value="<?= $venta->monto ?>" required>
+
+            <label for="producto">Nombre del producto:</label>
+            <input type="text" name="producto" id="producto" value="<?= $venta->producto ?>" required>
+
+            <label for="importado">Importado:</label>
+            <select name="importado" id="importado" required>
+                <option value="1" <?= ($venta->importado) ? 'selected' : '' ?>>Sí</option>
+                <option value="0" <?= (!$venta->importado) ? 'selected' : '' ?>>No</option>
+            </select>
+
+            <input type="submit" value="Editar">
+        </form>
+    <?php endif; ?>
+</body>
+
+</html>
+
+<?php require '../tpe/app/templates/Layout/footer.phtml'; ?>

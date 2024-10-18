@@ -1,0 +1,15 @@
+<?php require '../tpe/app/templates/Layout/header.phtml'; ?>
+    <div>
+    <?php if ($cliente): ?>
+        <ul>
+            <li>Nombre: <?= $this->$cliente->nombre ?> </li>
+            <li>Teléfono: <?= $this->$cliente->telefono ?> </li>
+            <li>DNI: <?= $this->$cliente->dni ?> </li>
+            <li>Mail: <?= $this->$cliente->mail?> </li>
+            <li>Fecha de nacimiento: <?= $this->$cliente->fecha_nacimiento?> </li>
+            <li>Imagen: <img src="<?= $this->$cliente->image?>" alt="Imagen del cliente" /></li>
+        </ul>
+    <?php endif; ?>
+</div>
+
+<?php require '../tpe/app/templates/Layout/footer.phtml'; ?>

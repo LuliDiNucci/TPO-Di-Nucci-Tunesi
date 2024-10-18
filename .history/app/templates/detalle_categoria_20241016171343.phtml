@@ -1,0 +1,15 @@
+<?php require '../tpe/app/templates/Layout/header.phtml'; ?>
+
+<div>
+    <?php if ($cliente): ?>
+        <ul>
+            <li>Nombre: <?= htmlspecialchars($cliente->nombre) ?> </li>
+            <li>Teléfono: <?= htmlspecialchars($cliente->telefono) ?> </li>
+            <li>DNI: <?= htmlspecialchars($cliente->dni) ?> </li>
+            <li>Mail: <?= htmlspecialchars($cliente->mail) ?> </li>
+            <li>Fecha de nacimiento: <?= htmlspecialchars($cliente->fecha_nacimiento) ?> </li>
+            <li>Imagen: <img src="<?php echo htmlspecialchars(url($cliente->imagen)); ?>" alt="Imagen del cliente" /></li>
+    </ul>
+    <?php endif; ?>
+</div>
+

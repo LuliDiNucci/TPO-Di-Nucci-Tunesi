@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nuevo cliente</title>
+</head>
+
+<body>
+    <h1>Editar cliente:</h1>
+    <?php if($cliente && $venta):?>
+    <form action="" method="POST">
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" name="nombre" value="">
+        <label for="clave_foranea">Selecciona el cliente:</label>
+            <select name="clave_foranea" id="clave_foranea" required>
+                <?php foreach ($clientes as $cliente): ?>
+                    <option value="<?= $cliente->id_categoria ?>"> <?php echo $cliente->nombre ?> </option>
+                <?php endforeach; ?>
+            </select>
+            <label for="monto">Monto:</label>
+            <input type="number" name="monto" id="monto" value="<?php echo $venta->monto ?>"required>
+            <label for="producto">Nombre del producto:</label>
+            <input type="text" name="producto" id="producto" value="<?php echo $venta->producto ?>" required>
+            <label for="importado">Importado:</label>
+            <select name="importado" id="importado" value="<?php echo $venta->importado ?>" required>
+                <option value="1">Sí</option>
+                <option value="0">No</option>
+            </select>
+    </form>
+    <?php endif;?>
+</body>
+
+</html>
+
+<?php require '../tpe/app/templates/Layout/footer.phtml'; ?>
+
+
+           
+
+            
+
+            
+            <label for="fecha_compra">Fecha de compra:</label>
+            <input type="text" name="fecha_compra" id="fecha_compra" <?= $venta->fecha_compra ?> required>
+
+
+            <input type="submit" value="agregar">

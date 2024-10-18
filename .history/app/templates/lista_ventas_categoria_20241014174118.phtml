@@ -1,0 +1,14 @@
+<ul class="listas">
+    <?php if (!empty($ventasCategoria)): ?>
+        <?php foreach ($ventasCategoria as $venta): ?>
+            <li>
+                <p><?=$venta->producto; ?></p>
+                 
+            </li>
+        <?php endforeach; ?>
+    <?php else: ?>
+        <li>No hay productos disponibles para este cliente.</li>
+    <?php endif; ?>
+</ul>
+
+<?php require '../tpe/app/templates/Layout/footer.phtml'; ?>

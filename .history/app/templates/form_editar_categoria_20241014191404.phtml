@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nuevo cliente</title>
+</head>
+<body>
+<h1>Editar cliente:</h1>
+    <form action="agregarCategoria" method="POST">
+    <input type="text" name="nombre" value="<?php echo htmlspecialchars($clienteEditar['nombre']); ?>">
+    <input type="tel" name="telefono" value="<?php echo htmlspecialchars($clienteEditar['telefono']); ?>">
+    <input type="email" name="mail" value="<?php echo htmlspecialchars($clienteEditar['mail']); ?>">
+    <input type="date" name="fecha_nacimiento" value="<?php echo htmlspecialchars($clienteEditar['fecha_nacimiento']); ?>">
+    <input type="text" name="imagen" value="<?php echo htmlspecialchars($clienteEditar['imagen']); ?>">
+       <input type="submit" name="submit" value="editar">
+    </form>
+</body>
+</html>
+
+<?php require '../tpe/app/templates/Layout/footer.phtml'; ?>

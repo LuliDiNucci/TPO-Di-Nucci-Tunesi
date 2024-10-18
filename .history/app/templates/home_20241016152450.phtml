@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+</head>
+<header>
+    <p> PERFUMERIAS TANDIL</p>
+    <a href="inicioSesion">Iniciar Sesion</a>
+</header>
+
+<body>
+    <?php if (!isset($_SESSION['nombre'])) ?>{
+    <a href="inicioSesion">Ventas</a>
+    <a href="inicioSesion">Categorias</a>
+
+    } <?php else ?>
+    <a href="ventas">Ventas</a>
+    <a href="categorias">Categorias</a>
+    <?php endif?>
+</body>
+
+</html>
+<?php require '../tpe/app/templates/Layout/footer.phtml'; ?>

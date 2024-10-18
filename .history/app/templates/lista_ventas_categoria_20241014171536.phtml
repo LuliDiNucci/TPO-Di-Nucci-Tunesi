@@ -1,0 +1,12 @@
+<ul class="listas">
+    <?php
+    if (!empty($ventas) && (is_array($ventas) || is_object($ventas))):
+        foreach ($ventas as $venta): ?>
+            <li>
+                <a href="venta/<?= $venta->id_venta ?>"><?= $venta->producto ?></a>
+
+            </li>
+        <?php endforeach ?>
+    <?php endif; ?>
+</ul>
+<?php require '../tpe/app/templates/Layout/footer.phtml'; ?>

@@ -1,0 +1,18 @@
+<?php require '../tpe/app/plantillas/disenio/encabezado.phtml'; ?>
+<ul class="listas">
+    <?php
+    if (!empty($ventas) && (is_array($ventas) || is_object($ventas))):
+        foreach ($ventas as $venta): ?>
+            <li>
+                <a href="./venta/<?= $venta->id_venta ?>"><?= $venta->producto ?></a>
+                <div class="actions">
+                <?php if (isset($_SESSION['nombre'])): ?>
+                    <a href="./eliminarVenta/<?= $venta->id_venta ?>" type="button" class='button'>Borrar</a>
+                    <a href="./editarVenta/<?= $venta->id_venta ?>" type="button" class='button'>Editar</a>
+                 <?php endif; ?>
+                   
+                </div>
+            </li>
+        <?php endforeach ?>
+    <?php endif; ?>
+</ul>
